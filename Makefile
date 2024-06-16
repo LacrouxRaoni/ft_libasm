@@ -1,34 +1,41 @@
-NAME	= teste.out
+NAME	=  libasm.a
 
 SRC_DIR	= src
 OBJ_DIR	= obj
 
-CC		= nasm -f elf64
+CC		= nasm
+FLAGS	= -f elf64
 
-LINKER	= ld -s -o
-
+AR	= ar rcs
 RM		= rm -rf
 
-SRC_FILES = hello.s
+SRC_FILES = ft_strlen.s
+
+
+MAIN_SRC	= main.c
+MAIN_EXEC	= test_libasm
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:$(SRC_DIR)/%.s=$(OBJ_DIR)/%.o)
 
-all: $(NAME)
+all: $(NAME) $(MAIN_EXEC)
 
 $(NAME): $(OBJ)
 	@echo $(OBJ)
-	@$(LINKER) $(NAME) $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.s
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(SRC) -o $(OBJ)
+	@$(CC) $(FLAGS) $(SRC) -o $(OBJ)
+
+$(MAIN_EXEC): $(MAIN_SRC) $(NAME)
+	@gcc $(MAIN_SRC) -L. -lasm -o $(MAIN_EXEC)
 
 clean:
 	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(MAIN_EXEC)
 
 re: fclean all
 
