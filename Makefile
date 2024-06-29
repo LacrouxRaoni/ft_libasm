@@ -27,7 +27,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.s
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(FLAGS) $(SRC) -o $(OBJ)
+	@$(CC) $(FLAGS) $< -o $@
 
 $(MAIN_EXEC): $(MAIN_SRC) $(NAME)
 	@gcc $(MAIN_SRC) -L. -lasm -o $(MAIN_EXEC)

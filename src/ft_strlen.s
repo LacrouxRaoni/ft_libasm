@@ -1,7 +1,9 @@
 section .text
-global ft_strlen            ;define the function ft_strlen can be used in other modules. 
+global ft_strlen            ;define the function ft_strlen to be used in other modules. 
 
 ft_strlen:
+    test rdi, rdi           ;check if register rdi is null
+    jz null_pointer         ;if rdi is null it jumps to null_pointer section
     xor rcx, rcx            ;set the rcx to 0 using operand xor by bitwise
 
 _loop:
@@ -13,3 +15,7 @@ _loop:
 done:
     mov rax, rcx            ;move the rcx register value to rax
     ret                     ;return size len
+
+null_pointer:
+    mov rax, -1             ;set rax with -1
+    ret                     ;return -1
