@@ -35,6 +35,6 @@ str_not_eql:
     sub rax, rbx    
     ret
 
-null_pointer
+null_pointer:
     mov rax, -1     ;set rax with -1
     ret             ;return -1

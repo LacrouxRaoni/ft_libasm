@@ -10,6 +10,7 @@ AR	= ar rcs
 RM		= rm -rf
 
 SRC_FILES = ft_strlen.s \
+			ft_strcpy.s \
 			ft_strcmp.s
 
 

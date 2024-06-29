@@ -96,6 +96,11 @@ int main(void)
     
     test_strcmp();
     
+    
+    char *a = NULL;
+    char b[6];
+    printf("%s\n\n\n", ft_strcpy(b, a));
+    //printf("%s\n\n\n", strcpy(b, a));
 
 
 
