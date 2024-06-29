@@ -9,11 +9,12 @@ FLAGS	= -f elf64
 AR	= ar rcs
 RM		= rm -rf
 
-SRC_FILES = ft_strlen.s
+SRC_FILES = ft_strlen.s \
+			ft_strcmp.s
 
 
 MAIN_SRC	= main.c
-MAIN_EXEC	= test_libasm
+MAIN_EXEC	= test
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:$(SRC_DIR)/%.s=$(OBJ_DIR)/%.o)
