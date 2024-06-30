@@ -10,9 +10,8 @@ AR	= ar rcs
 RM		= rm -rf
 
 SRC_FILES = ft_strlen.s \
-			ft_strcpy.s \
-			ft_strcmp.s
-
+			ft_strcmp.s \
+			ft_strcpy.s
 
 MAIN_SRC	= main.c
 MAIN_EXEC	= test

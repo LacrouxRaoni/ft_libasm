@@ -1,4 +1,5 @@
 #include "libasm.h"
+#include <stdlib.h>
 
 void test_strlen()
 {
@@ -87,20 +88,27 @@ void test_strcmp()
     //cmp = strcmp(s1, s2); 
     //printf("result in strcmp when value in s1 is lower than in s2 %d\n\n", cmp);
 
-    printf("############ END TEST STRLEN ############\n\n\n");
+    printf("############ END TEST STRCMP ############\n\n\n");
 }
 
 int main(void)
 {
     test_strlen();
-    
+        
     test_strcmp();
     
     
-    char *a = NULL;
-    char b[6];
-    printf("%s\n\n\n", ft_strcpy(b, a));
-    //printf("%s\n\n\n", strcpy(b, a));
+    char *a = "Raoni";
+    char *b="";
+    char *c = "";
+
+
+    printf("%s\n%s\n%s\n\n",a, b, c);
+    c = ft_strcpy(b, a);
+    
+    if (c)
+        printf("%s\n%s\n%s\n\n",a, b, c);
+    //printf("%s\n%s\n%s\n", a, b, strcpy(b, a));
 
 
 
