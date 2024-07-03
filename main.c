@@ -93,22 +93,82 @@ void test_strcmp()
 
 int main(void)
 {
-    test_strlen();
+    //test_strlen();
         
-    test_strcmp();
+    //test_strcmp();
     
-    
-    char *a = "Raoni";
-    char *b="";
-    char *c = "";
+
+    char *a;
+    char b[10];
+    char *c;
 
 
-    printf("%s\n%s\n%s\n\n",a, b, c);
+    //teste com a null - deve dar seg fault
+/*
+    a = NULL;
+    b = "";
+    c = "";
+    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
     c = ft_strcpy(b, a);
-    
-    if (c)
-        printf("%s\n%s\n%s\n\n",a, b, c);
-    //printf("%s\n%s\n%s\n", a, b, strcpy(b, a));
+    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+*/
+    //teste com b null - deve dar seg fault
+/*
+    a = "copia";
+    b = NULL;
+    c = "";
+    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+    c = ft_strcpy(b, a);
+    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+*/
+    //teste com a e b null - deve dar seg fault
+/*
+    a = NULL;
+    b = NULL;
+    c = "";
+    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+    c = ft_strcpy(b, a);
+    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+*/
+    //teste com a e b sem dados - dev dar seg fault
+/*
+    a="";
+    b="";
+    c = "";
+    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+    c = ft_strcpy(b, a);
+    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+*/
+    //teste com a com string e b sem tamanho - *** stack smashing detected ***: terminated \nAborted
+
+    a="Copia";
+    b;
+    c = "";
+ 
+    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+    c = ft_strcpy(b, a);
+    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+
+    //teste com a com string e b com tamanho correto - copia corretamente
+/*
+    a="Co";
+    b;
+    c = "";
+    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+    c = strcpy(b, a);
+    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+*/
+    //teste com a com string e b com tamanho a maior - copia corretamente
+ /* 
+    a="C";
+    b;
+    c = "";
+    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+    c = strcpy(b, a);
+    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
+*/
+
+
 
 
 

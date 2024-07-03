@@ -1,43 +1,49 @@
-section .text
-global ft_strcpy    ;define the function ft_strcmp to to be used in other modules.
+section .data
+null_msg db "The src or dst is null", 10, 0
+test_msg db "Puda", 0
 
+section .text
+global ft_strcpy
 
 ft_strcpy:
-                                ;rdi = dst;
-                                ;rsi = src;
 
-                                ;check if rdi or rsi is null
-    test rdi, rdi
-    jz null_pointer             ;if rdi is null jumps to null_pointer section
     test rsi, rsi
-    jz null_pointer             ;if rsi is null jumps to null_pointer section
+    jb  _null_pointer
+    test rdi, rdi
+    jb _null_pointer
 
-    xor rcx, rcx                ;set rcx to zero using xor
+    xor rcx, rcx
+    mov rbx, rdi
 
 
-_len_src:
-     cmp byte [rsi + rcx], 0    ;compare pointer of rsi until get the \0
-     je _check_dst              ;if it reaches the \0 jumps to _check_dst
-     inc rcx                    ;increment rcx
-     jmp _len_src               ;start loop again
-
-_check_dst:
-    inc rcx                     ;increment rcx to allocate an \0
-    mov rax, rcx                ;move rcx to rax to be used later
-
-    cmp rcx, rdi                ;compare if rdx has the same size of rcx
-    jb _buffer_to_small         ;if size in rdx is not enoght. jumps to _buffer_to_small section
+_src_len:
+    cmp byte [rsi + rcx], 0
+    je _copy_data
+    inc rcx
+    jmp _src_len
 
 _copy_data:
-    mov rax, rdi                
-    cld
-    rep movsb
+    xor rdx, rdx
+
+copy_loop:
+    mov al, [rsi + rdx]
+    mov [rbx + rdx], al
+    inc rdx
+    test al, al
+    jnz copy_loop
+
+    cmp rcx, rdx
+    jne _buffer_overflow
+
+done:
+    mov rax, rdi
     ret
 
-_buffer_to_small:
-    xor rax, rax
+_buffer_overflow:
+    mov rax, rdi
     ret
 
-null_pointer:
-    xor rax, rax
+_null_pointer:
+    lea rax, [rel null_msg]
     ret
+    
