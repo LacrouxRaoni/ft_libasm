@@ -91,89 +91,112 @@ void test_strcmp()
     printf("############ END TEST STRCMP ############\n\n\n");
 }
 
+void    test_strcpy()
+{
+
+    printf("############ TEST STRCPY ############\n");
+
+    //test with src null
+    printf("test1: src with null:\n");
+    char *test1_src;
+    char *test1_dst;
+    char *test1_ret;
+
+    test1_src = NULL;
+    test1_dst = "";
+    test1_ret = "";
+    printf("before: \ntest1_src: %p\ntest1_dst: %p\ntest1_ret: %s\n\n",test1_src, test1_dst, test1_ret);
+    test1_ret = ft_strcpy(test1_dst, test1_src);
+    printf("after: \ntest1_src: %p\ntest1_dst: %p\ntest1_ret: %s\n\n",test1_src, test1_dst, test1_ret);
+
+    //test with dst null
+    printf("test2: dst with null:\n");
+    char *test2_src;
+    char *test2_dst;
+    char *test2_ret;
+
+    test2_src = "Test2";
+    test2_dst = NULL;
+    test2_ret = "";
+    printf("before: \ntest2_src: %s\ntest2_dst: %p\ntest2_ret: %s\n\n",test2_src, test2_dst, test2_ret);
+    test2_ret = ft_strcpy(test2_dst, test2_src);
+    printf("after: \ntest2_src: %s\ntest2_dst: %p\ntest2_ret: %s\n\n",test2_src, test2_dst, test2_ret);
+
+
+    //test with src and dst null
+    printf("test3: src and dst with null:\n");
+    char *test3_src;
+    char *test3_dst;
+    char *test3_ret;
+
+    test3_src = NULL;
+    test3_dst = NULL;
+    test3_ret = "";
+    printf("before: \ntest3_src: %p\ntest3_dst: %p\ntest3_ret: %s\n\n",test3_src, test3_dst, test3_ret);
+    test3_ret = ft_strcpy(test3_dst, test3_src);
+    printf("after: \ntest3_src: %p\ntest3_dst: %p\ntest3_ret: %s\n\n",test3_src, test3_dst, test3_ret);
+
+
+    //test with src empty
+    printf("test4: src empty:\n");
+    char *test4_src;
+    char test4_dst[1];
+    char *test4_ret;
+
+    test4_src = "";
+    test4_ret = "";
+    printf("before: \ntest4_src: %s\ntest4_dst: %s\ntest4_ret: %s\n\n",test4_src, test4_dst, test4_ret);
+    test4_ret = ft_strcpy(test4_dst, test4_src);
+    printf("after: \ntest4_src: %s\ntest4_dst: %s\ntest4_ret: %s\n\n",test4_src, test4_dst, test4_ret);
+
+
+    //test src with string and dst without enouth size
+    printf("test5: dst without necessary size:\n");
+    char *test5_src;
+    char test5_dst[1];
+    char *test5_ret;
+
+    test5_src = "Test 5";
+    test5_ret = "";
+    printf("before: \ntest5_src: %s\ntest5_dst: %s\ntest5_ret: %s\n\n",test5_src, test5_dst, test5_ret);
+    test5_ret = ft_strcpy(test5_dst, test5_src);
+    printf("after: \ntest5_src: %s\ntest5_dst: %s\ntest5_ret: %s\n\n",test5_src, test5_dst, test5_ret);
+
+    //test dst with enought size
+    printf("test6: dst with enought size:\n");
+    char *test6_src;
+    char test6_dst[6] = {""};
+    char *test6_ret;
+
+    test6_src = "Test 6";
+    test6_ret = "";
+    printf("before: \ntest6_src: %s\ntest6_dst: %s\ntest6_ret: %s\n\n",test6_src, test6_dst, test6_ret);
+    test6_ret = ft_strcpy(test6_dst, test6_src);
+    printf("after: \ntest6_src: %s\ntest6_dst: %s\ntest6_ret: %s\n\n",test6_src, test6_dst, test6_ret);
+
+    //test dst with data already and with the right size
+    printf("test7: dst with data already and with the right size:\n");
+    char *test7_src;
+    char test7_dst[6] = {"Test 6"};
+    char *test7_ret;
+
+    test7_src = "Test 7";
+    test7_ret = "";
+    printf("before: \ntest7_src: %s\ntest7_dst: %s\ntest7_ret: %s\n\n",test7_src, test7_dst, test7_ret);
+    test7_ret = ft_strcpy(test7_dst, test7_src);
+    printf("after: \ntest7_src: %s\ntest7_dst: %s\ntest7_ret: %s\n\n",test7_src, test7_dst, test7_ret);
+
+    printf("############ END TEST STRCPY ############\n\n\n");    
+
+}
+
 int main(void)
 {
-    //test_strlen();
+    test_strlen();
         
-    //test_strcmp();
+    test_strcmp();
     
-
-    char *a;
-    char b[1];
-    char *c;
-
-
-    //teste com a null - deve dar seg fault
-/*
-    a = NULL;
-    b = "";
-    c = "";
-    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-    c = ft_strcpy(b, a);
-    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-*/
-    //teste com b null - deve dar seg fault
-/*
-    a = "copia";
-    b = NULL;
-    c = "";
-    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-    c = ft_strcpy(b, a);
-    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-*/
-    //teste com a e b null - deve dar seg fault
-/*
-    a = NULL;
-    b = NULL;
-    c = "";
-    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-    c = ft_strcpy(b, a);
-    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-*/
-    //teste com a e b sem dados - dev dar seg fault
-/*
-    a="";
-    b="";
-    c = "";
-    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-    c = ft_strcpy(b, a);
-    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-*/
-    //teste com a com string e b sem tamanho - *** stack smashing detected ***: terminated \nAborted
-/*
-    a="Copia";
-    char *d = malloc(1);
-    c = "";
- 
-    printf("antes: \na: %s\nd: %s\nc: %s\n\n",a, d, c);
-    c = strcpy(d, a);
-    printf("depois: \na: %s\nd: %s\nc: %s\n\n",a, d, c);
-    free(d);
-*/
-    //teste com a com string e b com tamanho correto - copia corretamente
-
-    a="Co";
-    b;
-    c = "";
-    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-    c = strcpy(b, a);
-    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-
-    //teste com a com string e b com tamanho a maior - copia corretamente
- /* 
-    a="C";
-    b;
-    c = "";
-    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-    c = strcpy(b, a);
-    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-*/
-
-
-
-
-
-
+    test_strcpy();
 
     return 0;
 
