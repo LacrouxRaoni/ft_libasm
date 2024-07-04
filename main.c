@@ -99,7 +99,7 @@ int main(void)
     
 
     char *a;
-    char b[10];
+    char b[1];
     char *c;
 
 
@@ -140,24 +140,25 @@ int main(void)
     printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
 */
     //teste com a com string e b sem tamanho - *** stack smashing detected ***: terminated \nAborted
-
+/*
     a="Copia";
-    b;
+    char *d = malloc(1);
     c = "";
  
-    printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-    c = ft_strcpy(b, a);
-    printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-
+    printf("antes: \na: %s\nd: %s\nc: %s\n\n",a, d, c);
+    c = strcpy(d, a);
+    printf("depois: \na: %s\nd: %s\nc: %s\n\n",a, d, c);
+    free(d);
+*/
     //teste com a com string e b com tamanho correto - copia corretamente
-/*
+
     a="Co";
     b;
     c = "";
     printf("antes: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
     c = strcpy(b, a);
     printf("depois: \na: %s\nb: %s\nc: %s\n\n",a, b, c);
-*/
+
     //teste com a com string e b com tamanho a maior - copia corretamente
  /* 
     a="C";

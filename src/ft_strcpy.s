@@ -18,11 +18,11 @@ ft_strcpy:
 
 _src_len:
     cmp byte [rsi + rcx], 0
-    je _copy_data
+    je _start_copy_data
     inc rcx
     jmp _src_len
 
-_copy_data:
+_start_copy_data:
     xor rdx, rdx
 
 copy_loop:
@@ -32,15 +32,8 @@ copy_loop:
     test al, al
     jnz copy_loop
 
-    cmp rcx, rdx
-    jne _buffer_overflow
-
 done:
-    mov rax, rdi
-    ret
-
-_buffer_overflow:
-    mov rax, rdi
+    mov rax, rdx
     ret
 
 _null_pointer:
