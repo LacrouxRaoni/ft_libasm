@@ -3,15 +3,17 @@ NAME	=  libasm.a
 SRC_DIR	= src
 OBJ_DIR	= obj
 
-CC		= nasm
-FLAGS	= -f elf64
+NASM		= nasm
+NFLAGS		= -f elf64
+
+GCC 		= gcc -Wall -Wextra -Werror
 
 AR	= ar rcs
 RM		= rm -rf
 
 SRC_FILES = ft_strlen.s \
 			ft_strcmp.s \
-			ft_strcpy.s \
+			ft_strcpy.s	\
 			ft_strdup.s
 
 MAIN_SRC	= main.c
@@ -28,10 +30,10 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.s
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(FLAGS) $< -o $@
+	@$(NASM) $(NFLAGS) $< -o $@
 
 $(MAIN_EXEC): $(MAIN_SRC) $(NAME)
-	@gcc $(MAIN_SRC) -L. -lasm -o $(MAIN_EXEC)
+	@$(GCC) $(MAIN_SRC) -L. -lasm -o $(MAIN_EXEC)
 
 clean:
 	$(RM) $(OBJ_DIR)

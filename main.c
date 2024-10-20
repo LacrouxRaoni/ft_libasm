@@ -1,7 +1,7 @@
 #include "libasm.h"
 #include <stdlib.h>
 
-void test_strlen()
+static void test_strlen()
 {
     char*   word;
     size_t  len;
@@ -47,7 +47,7 @@ void test_strlen()
     printf("############ END TEST STRLEN ############\n\n\n");
 }
 
-void test_strcmp()
+static void test_strcmp()
 {
     char    *s1;
     char    *s2;
@@ -91,7 +91,7 @@ void test_strcmp()
     printf("############ END TEST STRCMP ############\n\n\n");
 }
 
-void    test_strcpy()
+static void    test_strcpy()
 {
 
     printf("############ TEST STRCPY ############\n");
@@ -190,15 +190,35 @@ void    test_strcpy()
 
 }
 
+void test_strdup()
+{
+    printf("############ TEST STRDTUP ############\n");
+    
+    const char* src = "Raoni";
+    char* dst;
+
+    dst = ft_strdup(src);
+
+    printf("Imprimiu: %s\n", dst);
+
+    free(dst);
+    printf("############ END TEST STRDUP ############\n\n\n");    
+}
+
 int main(void)
 {
+ 
     test_strlen();
         
     test_strcmp();
     
     test_strcpy();
 
-    return 0;
+    test_strdup();
 
+
+
+    
+    return 0;
 
 }

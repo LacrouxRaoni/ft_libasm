@@ -2,6 +2,7 @@ section .data
 null_msg db "The src or dst is null", 10, 0  ; Error message for null pointer, terminated with a null byte
 
 section .text
+
 global ft_strcpy
 
 ft_strcpy:
