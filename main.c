@@ -194,20 +194,191 @@ void test_strdup()
 {
     printf("############ TEST STRDTUP ############\n");
     
-    const char* src = "Raoni";
-    char* dst;
+    printf("test1: standard strdup usage:\n");
+    const char* src_test1 = "Pudim";
+    char* dst_test1;
 
-    dst = ft_strdup(src);
+    dst_test1 = ft_strdup(src_test1);
 
-    printf("Imprimiu: %s\n", dst);
+    printf("str dup test1: %s\n\n", dst_test1);
+    free(dst_test1);
 
-    free(dst);
+    printf("test2: send NULL paramater to strdup:\n");
+    const char* src_test2 = NULL;
+    char* dst_test2;
+
+    dst_test2 = ft_strdup(src_test2);
+
+    printf("str dup test2: %s\n\n", dst_test2);
+
+    printf("test3: send empty paramater to strdup:\n");
+    const char* src_test3 = "";
+    char* dst_test3;
+
+    dst_test3 = ft_strdup(src_test3);
+
+    printf("str dup test3: %s\n\n", dst_test3);
+    free(dst_test3);
+
+    printf("test4: send a big data paramater to strdup:\n");
+    const char* src_test4 = "Today is the greatest day I've ever known\n"
+               "Can't live for tomorrow, tomorrow's much too long\n"
+               "I'll burn my eyes out\n"
+               "Before I get out\n"
+               "I wanted more\n"
+               "Than life could ever grant me\n"
+               "Bored by the chore\n"
+               "Of saving face\n"
+               "Today is the greatest day I've ever known\n"
+               "Can't wait for tomorrow, I might not have that long\n"
+               "I'll tear my heart out\n"
+               "Before I get out\n"
+               "Pink ribbon scars that never forget\n"
+               "I tried so hard to cleanse these regrets\n"
+               "My angel wings were bruised and restrained\n"
+               "My belly stings\n"
+               "Today is\n"
+               "Today is\n"
+               "Today is the greatest day, ooh\n"
+               "Ooh, yeah, yeah, ooh\n"
+               "I wanna turn you on\n"
+               "I wanna turn you on\n"
+               "I wanna turn you on\n"
+               "I wanna turn you\n"
+               "Today is the greatest\n"
+               "Today is the greatest day\n"
+               "Today is the greatest day that I have ever really known";
+
+    char* dst_test4;
+
+    dst_test4 = ft_strdup(src_test4);
+
+    printf("str dup test4: %s\n\n", dst_test4);
+    free(dst_test4);
+
     printf("############ END TEST STRDUP ############\n\n\n");    
+}
+
+static void test_write()
+{
+    printf("############ TEST WRITE ############\n");
+
+    printf("TEST 1: send a string to write with negative fd:\n");
+    char* test1 = "Test 1\n";
+    int fd_test1 = -1;
+    size_t buffsize_test1 = 7;
+    ssize_t ret_test1;
+
+    ret_test1 = write(fd_test1, test1, buffsize_test1);
+    printf ("TEST 1 - write result: %zd\n", ret_test1);
+
+    ret_test1 = ft_write(fd_test1, test1, buffsize_test1);
+    printf ("TEST 1 - ft_write result: %zd\n\n", ret_test1);
+
+
+    printf("TEST 2: send a string to write with negative buffer size:\n");
+    char* test2 = "Test 2\n";
+    int fd_test2 = 0;
+    size_t buffsize_test2 = -1;
+    ssize_t ret_test2;
+
+    ret_test2 = write(fd_test2, test2, buffsize_test2);
+    printf ("TEST 2 - write result: %zd\n", ret_test2);
+
+    ret_test2 = ft_write(fd_test2, test2, buffsize_test2);
+    printf ("TEST 2 - ft_write result: %zd\n\n", ret_test2);
+
+    printf("TEST 3: send a string to write with NULL value and 0 buff size:\n");
+    char* test3 = NULL;
+    int fd_test3 = 0;
+    size_t buffsize_test3 = 0;
+    ssize_t ret_test3;
+
+    ret_test3 = write(fd_test3, test3, buffsize_test3);
+    printf ("TEST 3 - write result: %zd\n", ret_test3);
+
+    ret_test3 = ft_write(fd_test3, test3, buffsize_test3);
+    printf ("TEST 3 - ft_write result: %zd\n\n", ret_test3);
+
+    printf("TEST 4: send a string to write with NULL value and buff size 5:\n");
+    char* test4 = NULL;
+    int fd_test4 = 0;
+    size_t buffsize_test4 = 5;
+    ssize_t ret_test4;
+
+    ret_test4 = write(fd_test4, test4, buffsize_test4);
+    printf ("TEST 4 - write result: %zd\n", ret_test4);
+
+    ret_test4 = ft_write(fd_test4, test4, buffsize_test4);
+    printf ("TEST 4 - ft_write result: %zd\n\n", ret_test4);
+
+    printf("TEST 5: send a string to write with buff size lower:\n");
+    char* test5 = "Writing test 5\n";
+    int fd_test5 = 0;
+    size_t buffsize_test5 = 5;
+    ssize_t ret_test5;
+
+    ret_test5 = write(fd_test5, test5, buffsize_test5);
+    printf ("\nTEST 5 - write result: %zd\n", ret_test5);
+
+    ret_test5 = ft_write(fd_test5, test5, buffsize_test5);
+    printf ("\nTEST 5 - ft_write result: %zd\n\n", ret_test5);
+
+    printf("TEST 6: send a string to write with buff size higher:\n");
+    char* test6 = "Writing test 6\n";
+    int fd_test6 = 0;
+    size_t buffsize_test6 = 20;
+    ssize_t ret_test6;
+
+    ret_test6 = write(fd_test6, test6, buffsize_test6);
+    printf ("\nTEST 6 - write result: %zd\n", ret_test6);
+
+    ret_test6 = ft_write(fd_test6, test6, buffsize_test6);
+    printf ("\nTEST 6 - ft_write result: %zd\n\n", ret_test6);
+
+    printf("TEST 7: send a string to write with invalid fd:\n");
+    char* test7 = "Writing test 7\n";
+    int fd_test7 = 100;
+    size_t buffsize_test7 = 15;
+    ssize_t ret_test7;
+
+    ret_test7 = write(fd_test7, test7, buffsize_test7);
+    printf ("\nTEST 7 - write result: %zd\n", ret_test7);
+
+    ret_test7 = ft_write(fd_test7, test7, buffsize_test7);
+    printf ("\nTEST 7 - ft_write result: %zd\n\n", ret_test7);
+
+    printf("TEST 8: send a string with all valid:\n");
+    char* test8 = "Writing test 8\n";
+    int fd_test8 = 0;
+    size_t buffsize_test8 = 15;
+    ssize_t ret_test8;
+
+    ret_test8 = write(fd_test8, test8, buffsize_test8);
+    printf ("\nTEST 8 - write result: %zd\n", ret_test8);
+
+    ret_test8 = ft_write(fd_test8, test8, buffsize_test8);
+    printf ("\nTEST 8 - ft_write result: %zd\n\n", ret_test8);
+
+    printf("TEST 9: send a string with all valid to a file:\n");
+    char* test9 = "Writing test 9\n";
+    int fd_test9 = open("test9.txt", O_WRONLY | O_CREAT);
+    size_t buffsize_test9 = 15;
+    ssize_t ret_test9;
+
+    ret_test9 = write(fd_test9, test9, buffsize_test9);
+    printf ("\nTEST 9 - write result: %zd\n", ret_test9);
+
+    ret_test9 = ft_write(fd_test9, test9, buffsize_test9);
+    printf ("\nTEST 9 - ft_write result: %zd\n\n", ret_test9);
+
+    printf("############ END TEST WRITE ############\n\n\n");    
 }
 
 int main(void)
 {
  
+    /*
     test_strlen();
         
     test_strcmp();
@@ -216,7 +387,8 @@ int main(void)
 
     test_strdup();
 
-
+    */
+    test_write();
 
     
     return 0;

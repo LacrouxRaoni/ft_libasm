@@ -6,7 +6,7 @@ OBJ_DIR	= obj
 NASM		= nasm
 NFLAGS		= -f elf64
 
-GCC 		= gcc -Wall -Wextra -Werror
+GCC 		= gcc -Wall -Wextra #-Werror
 
 AR	= ar rcs
 RM		= rm -rf
@@ -14,7 +14,8 @@ RM		= rm -rf
 SRC_FILES = ft_strlen.s \
 			ft_strcmp.s \
 			ft_strcpy.s	\
-			ft_strdup.s
+			ft_strdup.s \
+			ft_write.s
 
 MAIN_SRC	= main.c
 MAIN_EXEC	= test
