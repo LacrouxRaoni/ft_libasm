@@ -7,37 +7,40 @@ section .text
 extern ft_strlen 
 extern ft_strcpy
 extern malloc
+extern __errno_location             ; Import the errno location function
 
 global ft_strdup
 
 ft_strdup:
-    test rsi, rsi             ;checxk if rsi is null
-    jz _null_pointer          ;send the null poarameter to error section
+    test rsi, rsi                   ; Checxk if rsi is null
+    jz _null_pointer                ; Send the null poarameter to error section
 
-    mov r8, rdi               ;save the rdi pointer to a temporary register
+    mov r8, rdi                     ; Save the rdi pointer to a temporary register
     
-    call ft_strlen            ;check string size
-    add rax, 1                ;increase 1 size to \0
+    call ft_strlen                  ; Check string size
+    add rax, 1                      ; Increase 1 size to \0
     
-    mov rdi, rax              ;mov the len data to return register
+    mov rdi, rax                    ; Mov the len data to return register
     
-    call malloc wrt ..plt     ;call C malloc function
-    test rax, rax             ;check for malloc error returned
-    jz _malloc_error          ;jump to malloc error section
+    call malloc wrt ..plt           ; Call C malloc function
+    test rax, rax                   ; Check for malloc error returned
+    jz _malloc_error                ; Jump to malloc error section
 
-    mov rdi, rax              ;move malloc address to rdi
+    mov rdi, rax                    ; Move malloc address to rdi
     
-    mov rsi, r8               ;move the rdi pointer backup to rsi
+    mov rsi, r8                     ; Move the rdi pointer backup to rsi
         
-    call ft_strcpy            ;copy rsi to rdi
+    call ft_strcpy                  ; Copy rsi to rdi
     
 end:
-    ret                       ;return copied string
+    ret                             ; Return copied string
 
 _null_pointer:
-    lea rax, [rel null_msg]   ;send standard message funcionv to rax
-    ret                       ;return message error
+    lea rax, [rel null_msg]         ; Send standard message funcionv to rax
+    ret                             ; Return message error
 
 _malloc_error:
-    lea rax, [rel malloc_msg] ;send standard message funcionv to rax
-    re                        ;return message error
+    call __errno_location wrt ..plt ; Get the address of errno
+    mov dword [rax], 12             ; Set errno to ENOMEM (out of memory, value 12)
+    lea rax, [rel malloc_msg]       ;send standard message funcionv to rax
+    re                              ;return message error

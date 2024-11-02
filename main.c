@@ -256,6 +256,8 @@ void test_strdup()
     printf("str dup test4: %s\n\n", dst_test4);
     free(dst_test4);
 
+
+
     printf("############ END TEST STRDUP ############\n\n\n");    
 }
 
@@ -271,9 +273,11 @@ static void test_write()
 
     ret_test1 = write(fd_test1, test1, buffsize_test1);
     printf ("TEST 1 - write result: %zd\n", ret_test1);
+    printf("TEST 1 - write errno: %d\n", errno);
 
     ret_test1 = ft_write(fd_test1, test1, buffsize_test1);
-    printf ("TEST 1 - ft_write result: %zd\n\n", ret_test1);
+    printf ("TEST 1 - ft_write result: %zd\n", ret_test1);
+    printf("TEST 1 - ft_write Errno: %d\n\n", errno);
 
 
     printf("TEST 2: send a string to write with negative buffer size:\n");
@@ -284,9 +288,11 @@ static void test_write()
 
     ret_test2 = write(fd_test2, test2, buffsize_test2);
     printf ("TEST 2 - write result: %zd\n", ret_test2);
+    printf("TEST 2 - write errno: %d\n", errno);
 
     ret_test2 = ft_write(fd_test2, test2, buffsize_test2);
-    printf ("TEST 2 - ft_write result: %zd\n\n", ret_test2);
+    printf ("TEST 2 - ft_write result: %zd\n", ret_test2);
+    printf("TEST 2 - ft_write Errno: %d\n\n", errno);
 
     printf("TEST 3: send a string to write with NULL value and 0 buff size:\n");
     char* test3 = NULL;
@@ -296,9 +302,11 @@ static void test_write()
 
     ret_test3 = write(fd_test3, test3, buffsize_test3);
     printf ("TEST 3 - write result: %zd\n", ret_test3);
+    printf("TEST 3 - write errno: %d\n", errno);
 
     ret_test3 = ft_write(fd_test3, test3, buffsize_test3);
-    printf ("TEST 3 - ft_write result: %zd\n\n", ret_test3);
+    printf ("TEST 3 - ft_write result: %zd\n", ret_test3);
+    printf("TEST 3 - ft_write Errno: %d\n\n", errno);
 
     printf("TEST 4: send a string to write with NULL value and buff size 5:\n");
     char* test4 = NULL;
@@ -308,9 +316,11 @@ static void test_write()
 
     ret_test4 = write(fd_test4, test4, buffsize_test4);
     printf ("TEST 4 - write result: %zd\n", ret_test4);
+    printf("TEST 4 - write errno: %d\n", errno);
 
     ret_test4 = ft_write(fd_test4, test4, buffsize_test4);
-    printf ("TEST 4 - ft_write result: %zd\n\n", ret_test4);
+    printf ("TEST 4 - ft_write result: %zd\n", ret_test4);
+    printf("TEST 4 - ft_write Errno: %d\n\n", errno);
 
     printf("TEST 5: send a string to write with buff size lower:\n");
     char* test5 = "Writing test 5\n";
@@ -320,9 +330,11 @@ static void test_write()
 
     ret_test5 = write(fd_test5, test5, buffsize_test5);
     printf ("\nTEST 5 - write result: %zd\n", ret_test5);
+    printf("TEST 5 - write errno: %d\n", errno);
 
     ret_test5 = ft_write(fd_test5, test5, buffsize_test5);
-    printf ("\nTEST 5 - ft_write result: %zd\n\n", ret_test5);
+    printf ("\nTEST 5 - ft_write result: %zd\n", ret_test5);
+    printf("TEST 5 - ft_write Errno: %d\n\n", errno);
 
     printf("TEST 6: send a string to write with buff size higher:\n");
     char* test6 = "Writing test 6\n";
@@ -332,9 +344,11 @@ static void test_write()
 
     ret_test6 = write(fd_test6, test6, buffsize_test6);
     printf ("\nTEST 6 - write result: %zd\n", ret_test6);
+    printf("TEST 6 - write errno: %d\n", errno);
 
     ret_test6 = ft_write(fd_test6, test6, buffsize_test6);
-    printf ("\nTEST 6 - ft_write result: %zd\n\n", ret_test6);
+    printf ("\nTEST 6 - ft_write result: %zd\n", ret_test6);
+    printf("TEST 6 - ft_write Errno: %d\n\n", errno);
 
     printf("TEST 7: send a string to write with invalid fd:\n");
     char* test7 = "Writing test 7\n";
@@ -344,9 +358,11 @@ static void test_write()
 
     ret_test7 = write(fd_test7, test7, buffsize_test7);
     printf ("\nTEST 7 - write result: %zd\n", ret_test7);
+    printf("TEST 7 - write errno: %d\n", errno);
 
     ret_test7 = ft_write(fd_test7, test7, buffsize_test7);
-    printf ("\nTEST 7 - ft_write result: %zd\n\n", ret_test7);
+    printf ("\nTEST 7 - ft_write result: %zd\n", ret_test7);
+    printf("TEST 7 - ft_write Errno: %d\n\n", errno);
 
     printf("TEST 8: send a string with all valid:\n");
     char* test8 = "Writing test 8\n";
@@ -356,9 +372,11 @@ static void test_write()
 
     ret_test8 = write(fd_test8, test8, buffsize_test8);
     printf ("\nTEST 8 - write result: %zd\n", ret_test8);
+    printf("TEST 8 - write errno: %d\n", errno);
 
     ret_test8 = ft_write(fd_test8, test8, buffsize_test8);
-    printf ("\nTEST 8 - ft_write result: %zd\n\n", ret_test8);
+    printf ("\nTEST 8 - ft_write result: %zd\n", ret_test8);
+    printf("TEST 8 - ft_write Errno: %d\n\n", errno);
 
     printf("TEST 9: send a string with all valid to a file:\n");
     char* test9 = "Writing test 9\n";
@@ -368,17 +386,42 @@ static void test_write()
 
     ret_test9 = write(fd_test9, test9, buffsize_test9);
     printf ("\nTEST 9 - write result: %zd\n", ret_test9);
+    printf("TEST 9 - write errno: %d\n", errno);
 
     ret_test9 = ft_write(fd_test9, test9, buffsize_test9);
-    printf ("\nTEST 9 - ft_write result: %zd\n\n", ret_test9);
+    printf ("\nTEST 9 - ft_write result: %zd\n", ret_test9);
+    printf("TEST 9 - ft_write Errno: %d\n\n", errno);
+    close(fd_test9);
 
     printf("############ END TEST WRITE ############\n\n\n");    
 }
 
+void test_read()
+{
+    printf("TEST 1: send a text from a file to read:\n");
+    char test1[128];
+    int fd_test1 = open("test9.txt", O_RDONLY);    
+    ssize_t ret_test1;
+
+/*
+    ret_test1 = read(fd_test1, test1, sizeof(test1));
+    test1[ret_test1] = '\0'; 
+    printf ("\nTEST 1 - read result: %zd\n", ret_test1);
+    printf("TEST 1 - read errno: %d\n", errno);
+    printf("Read content: %s\n", test1);
+*/
+
+    ret_test1 = ft_read(fd_test1, test1, sizeof(test1));
+    test1[ret_test1] = '\0'; 
+    printf ("\nTEST 1 - ft_read result: %zd\n", ret_test1);
+    printf("TEST 1 - ft_read Errno: %d\n\n", errno);
+    printf("Read content: %s\n", test1);
+    close(fd_test1);
+}
+
 int main(void)
 {
- 
-    /*
+/*
     test_strlen();
         
     test_strcmp();
@@ -387,10 +430,10 @@ int main(void)
 
     test_strdup();
 
-    */
     test_write();
+  */  
+    test_read();
 
-    
     return 0;
 
 }

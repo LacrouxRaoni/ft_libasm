@@ -14,16 +14,8 @@ ft_strcpy:
     test rdi, rdi
     jz _null_pointer   ; If null, jump to _null_pointer
 
-    ; Initialize the length counter (rcx) and store the destination address in rbx
-    xor rcx, rcx       ; Clear the rcx register
+    ; Store the destination address in rbx
     mov rbx, rdi       ; Store the destination pointer in rbx
-
-_src_len:
-    ; Traverse the source string to calculate its length
-    cmp byte [rsi + rcx], 0  ; Compare the current byte with 0 (null terminator)
-    je _start_copy_data      ; If equal to 0, jump to _start_copy_data
-    inc rcx                  ; Increment the length counter
-    jmp _src_len             ; Repeat the loop
 
 _start_copy_data:
     ; Start copying the data

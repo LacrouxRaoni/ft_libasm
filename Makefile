@@ -15,7 +15,8 @@ SRC_FILES = ft_strlen.s \
 			ft_strcmp.s \
 			ft_strcpy.s	\
 			ft_strdup.s \
-			ft_write.s
+			ft_write.s \
+			ft_read.s
 
 MAIN_SRC	= main.c
 MAIN_EXEC	= test
