@@ -6,7 +6,7 @@ OBJ_DIR	= obj
 NASM		= nasm
 NFLAGS		= -f elf64
 
-GCC 		= gcc -Wall -Wextra #-Werror
+GCC 		= gcc -Wall -Wextra -Werror
 
 AR	= ar rcs
 RM		= rm -rf
@@ -18,7 +18,8 @@ SRC_FILES = ft_strlen.s \
 			ft_write.s \
 			ft_read.s
 
-MAIN_SRC	= main.c
+MAIN_SRC	= main.c \
+			  tests/test.c
 MAIN_EXEC	= test
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
