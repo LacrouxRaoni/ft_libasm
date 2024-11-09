@@ -6,7 +6,7 @@ OBJ_DIR	= obj
 NASM		= nasm
 NFLAGS		= -f elf64
 
-GCC 		= gcc -Wall -Wextra -Werror
+GCC 		= gcc -g3 -Wall -Wextra -Werror
 
 AR	= ar rcs
 RM		= rm -rf

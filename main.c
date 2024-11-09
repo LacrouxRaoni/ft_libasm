@@ -7,8 +7,9 @@ static size_t check_len(char* word)
 
 static char* now_copy(char* word, size_t len)
 {
-    char dst[len];
+    char *dst;
 
+    dst = malloc(len + 1);
     return (ft_strcpy(dst, word));
 }
 
@@ -17,7 +18,7 @@ static int compare(char* s1, char* s2)
     return (ft_strcmp(s1, s2));
 }
 
-static char* dup_clone(char* clone)
+static char* dup_impostor(char* clone)
 {
     return (ft_strdup(clone));
 }
@@ -26,7 +27,8 @@ static void write_it_all(char* s1, char* s2)
 {
     int fd;
 
-    fd = open("PudaFile.txt", O_WRONLY | O_CREAT | O_APPEND);
+    fd = 0; 
+    fd = open("PudaFile.txt", O_WRONLY | O_CREAT);
     ft_write(fd, s1, ft_strlen(s1));
     ft_write(fd, s2, ft_strlen(s2));
     close(fd);
@@ -49,28 +51,38 @@ static void read_the_file()
 int main(void)
 {
 
-    char*   word = "My name is Puda";
+    char*   word;
     size_t  len;
     char*   clone;
     int     cmp;
     char*   dup;
+    char*   impostor;
+    word = "Puda";
+    len = 0;
+    clone = NULL;
+    impostor = "Pupuda";
+    cmp = 0;
+    dup = NULL;
 
     len = check_len(word);
-    printf("%s ...and my size is %ld\n",word, len);
+    printf("My name is %s ...and my size is %ld\n",word, len);
     
     clone = now_copy(word, len);
-    printf("Now...%s, and this is my clone: %s\n", word, clone);
+    printf("I am the original %s, and this is my clone: %s\n", word, clone);
     
     cmp = compare(word, clone);
     printf("My clone and I compare are: %d\n", cmp);
+    cmp = compare(impostor, word);
+    printf("Maybe there is an impostor here: %d\n", cmp);
 
-    dup = dup_clone(word);
+    dup = dup_impostor(impostor);
     printf("dup result: %s\n", dup);
     
-    write_it_all(word, dup);
-    
+    write_it_all(word, impostor);
+
     read_the_file();
- 
+    free(dup);
+    free (clone);
     //tests();
     return 0;
 

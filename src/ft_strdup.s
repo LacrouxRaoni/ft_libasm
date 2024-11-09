@@ -43,4 +43,4 @@ _malloc_error:
     call __errno_location wrt ..plt ; Get the address of errno
     mov dword [rax], 12             ; Set errno to ENOMEM (out of memory, value 12)
     lea rax, [rel malloc_msg]       ;send standard message funcionv to rax
-    re                              ;return message error
+    ret                             ;return message error

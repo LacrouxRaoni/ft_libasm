@@ -31,7 +31,7 @@ str_eql:
 
 str_not_eql:
     movzx rax, al   ;move data from al to a larger size register
-    movzx rsi, bl   ;move data from bl to a larger size register
+    movzx rbx, bl   ;move data from bl to a larger size register
     sub rax, rbx    
     ret
 

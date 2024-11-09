@@ -8,6 +8,7 @@ static void test_strlen()
     printf("############ TEST STRLEN ############\n");
 
     word = "Puda";
+    len = 0;
     len = ft_strlen(word);
     printf("size of %s in ft_strlen is %ld\n", word ,len);
     len = strlen(word);
