@@ -1,89 +1,182 @@
 #include "libasm.h"
 
-static size_t check_len(char* word)
+static void test_ft_strlen()
 {
-    return (ft_strlen(word));
+    size_t len;
+
+    len = ft_strlen("My size is 13");
+    printf("len: %ld\n", len);
+
+    len = ft_strlen("");
+    printf("len: %ld\n", len);
+
+    len = ft_strlen("Some say the end is near\n"
+        "Some say we'll see Armageddon soon\n"
+        "I certainly hope we will\n"
+        "I sure could use a vacation from this\n"
+        "Bullshit three-ring\n"
+        "Circus sideshow of\n"
+        "Freaks\n"
+        "Here in this hopeless fucking hole we call L.A.\n"
+        "The only way to fix it is to flush it all away\n"
+        "Any fucking time, any fucking day\n"
+        "Learn to swim, I'll see you down in Arizona bay\n"
+        "Fret for your figure and\n"
+        "Fret for your latte and\n"
+        "Fret for your lawsuit and\n"
+        "Fret for your hairpiece and\n"
+        "Fret for your Prozac and\n"
+        "Fret for your pilot and\n"
+        "Fret for your contract and\n"
+        "Fret for your car\n"
+        "It's a\n"
+        "Bullshit three-ring\n"
+        "Circus sideshow of\n"
+        "Freaks\n"
+        "Here in this hopeless fucking hole we call L.A.\n"
+        "The only way to fix it is to flush it all away\n"
+        "Any fucking time, any fucking day\n"
+        "Learn to swim, I'll see you down in Arizona bay\n"
+        "Some say a comet will fall from the sky\n"
+        "Followed by meteor showers and tidal waves\n"
+        "Followed by fault lines that cannot sit still\n"
+        "Followed by millions of dumbfounded dipshits\n"
+        "And some say the end is near\n"
+        "Some say we'll see Armageddon soon\n"
+        "I certainly hope we will\n"
+        "I sure could use a vacation from this\n"
+        "Stupid shit, silly shit, stupid shit\n"
+        "One great big festering neon distraction\n"
+        "I've a suggestion to keep you all occupied\n"
+        "Learn to swim, learn to swim, learn to swim\n"
+        "'Cause Mom's gonna fix it all soon\n"
+        "Mom's comin' 'round to put it back the way it ought to be\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Fuck L. Ron Hubbard and\n"
+        "Fuck all his clones\n"
+        "Fuck all these gun-toting\n"
+        "Hip gangster wannabes\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Fuck retro anything\n"
+        "Fuck your tattoos\n"
+        "Fuck all you junkies and\n"
+        "Fuck your short memories\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Yeah, fuck smiley glad-hands\n"
+        "With hidden agendas\n"
+        "Fuck these dysfunctional\n"
+        "Insecure actresses\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "Learn to swim, learn to swim\n"
+        "'Cause I'm praying for rain\n"
+        "I'm praying for tidal waves\n"
+        "I wanna see the ground give way\n"
+        "I wanna watch it all go down\n"
+        "Mom, please flush it all away\n"
+        "I wanna see it go right in and down\n"
+        "I wanna watch it go right in\n"
+        "Watch you flush it all away\n"
+        "Yeah, time to bring it down again\n"
+        "Yeah, don't just call me pessimist\n"
+        "Try and read between the lines\n"
+        "I can't imagine why you wouldn't\n"
+        "Welcome any change, my friend\n"
+        "I wanna see it come down\n"
+        "Put it down\n"
+        "Suck it down\n"
+        "Flush it down\n");
+    printf("len: %ld\n", len);
 }
 
-static char* now_copy(char* word, size_t len)
+void test_ft_strcmp()
 {
-    char *dst;
+    int cmp; 
 
-    dst = malloc(len + 1);
-    return (ft_strcpy(dst, word));
+    cmp = ft_strcmp("Teste0", "Teste0");
+    printf("cmp: %d\n", cmp);
+
+    cmp = ft_strcmp("Teste0", "Teste9");
+    printf("cmp: %d\n", cmp);
+    cmp = ft_strcmp("Teste9", "Teste0");
+    printf("cmp: %d\n", cmp);
+
+    cmp = ft_strcmp("", "0");
+    printf("cmp: %d\n", cmp);
+
+    cmp = ft_strcmp("0", "");
+    printf("cmp: %d\n", cmp);
 }
 
-static int compare(char* s1, char* s2)
+void test_ft_strcpy()
 {
-    return (ft_strcmp(s1, s2));
+    char* copy;
+    char* dest;
+    
+    dest = malloc(ft_strlen("Hello World") * sizeof(char));
+    copy = ft_strcpy(dest, "Hello World");
+    printf("copy: %s\n", copy);
+    free(dest);
 }
 
-static char* dup_impostor(char* clone)
+void test_ft_write()
 {
-    return (ft_strdup(clone));
+    ft_write(0, "Writing Hello World\n", ft_strlen("Writing Hello World\n"));
+    ft_write(0, "Writing Hello Woooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooorld\n", ft_strlen("Writing Hello Woooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooorld\n"));
+    ft_write(0, "", ft_strlen(""));
+
+    int fd = open("Test.txt", O_WRONLY | O_CREAT);
+    ft_write(fd, "Writing Hello World\n", ft_strlen("Writing Hello World\n"));
 }
 
-static void write_it_all(char* s1, char* s2)
+void test_ft_read()
 {
-    int fd;
+    char* buffer;
 
-    fd = 0; 
-    fd = open("PudaFile.txt", O_WRONLY | O_CREAT);
-    ft_write(fd, s1, ft_strlen(s1));
-    ft_write(fd, s2, ft_strlen(s2));
-    close(fd);
+    buffer = malloc(sizeof(char) * 1024);
+    ft_read(1, buffer, ft_strlen("movements"));
+    printf("read: %s\n", buffer);
 }
 
-static void read_the_file()
+void test_ft_strdup()
 {
-    char    buffer[128];
-    size_t  ret;
-    int fd;
+    char* dup;
 
-    fd = open("PudaFile.txt", O_RDONLY);
-    ret = ft_read(fd, buffer, sizeof(buffer));
-    buffer[ret] = '\0';
-
-    printf("read content: %s\n", buffer);
-    close (fd);
+    dup = ft_strdup("Hello World");
+    printf("dup: %s\n", dup);
 }
 
 int main(void)
 {
+    printf ("====FT_STRLEN====\n");
+    test_ft_strlen();
 
-    char*   word;
-    size_t  len;
-    char*   clone;
-    int     cmp;
-    char*   dup;
-    char*   impostor;
-    word = "Puda";
-    len = 0;
-    clone = NULL;
-    impostor = "Pupuda";
-    cmp = 0;
-    dup = NULL;
+    printf ("====FT_STRCMP====\n");
+    test_ft_strcmp();
 
-    len = check_len(word);
-    printf("My name is %s ...and my size is %ld\n",word, len);
-    
-    clone = now_copy(word, len);
-    printf("I am the original %s, and this is my clone: %s\n", word, clone);
-    
-    cmp = compare(word, clone);
-    printf("My clone and I compare are: %d\n", cmp);
-    cmp = compare(impostor, word);
-    printf("Maybe there is an impostor here: %d\n", cmp);
+    printf ("====FT_STRCPY====\n");
+    test_ft_strcpy();
 
-    dup = dup_impostor(impostor);
-    printf("dup result: %s\n", dup);
-    
-    write_it_all(word, impostor);
+    printf ("====FT_WRITE====\n");
+    test_ft_write();
 
-    read_the_file();
-    free(dup);
-    free (clone);
-    //tests();
+    printf ("====FT_READ====\n");
+    test_ft_read();
+
+    printf ("====FT_STRDUP====\n");
+    test_ft_strdup();
+
+
     return 0;
 
 }

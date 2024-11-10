@@ -15,7 +15,7 @@ ft_strdup:
     test rsi, rsi                   ; Check if rsi is null
     jz _null_pointer                ; Send the null poarameter to error section
 
-    mov r8, rdi                     ; Save the rdi pointer to a temporary register
+    mov r14, rdi                     ; Save the rdi pointer to a temporary register
     
     call ft_strlen                  ; Check string size
     add rax, 1                      ; Increase 1 size to \0
@@ -28,7 +28,7 @@ ft_strdup:
 
     mov rdi, rax                    ; Move malloc address to rdi
     
-    mov rsi, r8                     ; Move the rdi pointer backup to rsi
+    mov rsi, r14                     ; Move the rdi pointer backup to rsi
         
     call ft_strcpy                  ; Copy rsi to rdi
     
@@ -36,7 +36,7 @@ end:
     ret                             ; Return copied string
 
 _null_pointer:
-    lea rax, [rel null_msg]         ; Send standard message funcionv to rax
+    xor rax, rax         ; Send standard message funcionv to rax
     ret                             ; Return message error
 
 _malloc_error:
