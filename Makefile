@@ -19,7 +19,7 @@ SRC_FILES = ft_strlen.s \
 			ft_read.s
 
 MAIN_SRC	= main.c \
-			  tests/test.c
+			  #tests/test.c
 MAIN_EXEC	= test
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

@@ -24,18 +24,12 @@ handle_null:
     jne invalid_size                  ; If not zero, jump to invalid_size section
     jmp end                           ; Jump to end to return 0
 
-invalid_fd:
-    call __errno_location wrt ..plt   ; Get the address of errno
-    mov dword [rax], 9                ; Set errno to EBADF (Bad file descriptor, value 9)
-    jmp error                         ; Jump to error handling
-
 invalid_size:
     call __errno_location wrt ..plt   ; Get the address of errno
     mov dword [rax], 14               ; Set errno to EFAU (Invalid argument, value 22)
     jmp error                         ; Jump to error handling
 
 read_failed:
-
     call __errno_location wrt ..plt   ; Get the address of errno
     mov dword [rax], 9                ; Set errno to EBADF (Bad file descriptor, value 9)
     jmp error                         ; Jump to error handling

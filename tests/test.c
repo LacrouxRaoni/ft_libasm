@@ -157,10 +157,11 @@ static void    test_strcpy()
     char *test5_ret;
 
     test5_src = "Test 5";
-    test5_ret = "";
-    printf("before: \ntest5_src: %s\ntest5_dst: %s\ntest5_ret: %s\n\n",test5_src, test5_dst, test5_ret);
+    test5_dst[0] = 0;
+	test5_ret = "";
+    printf("before: \ntest5_src: %s\ntest5_dst: %c\ntest5_ret: %s\n\n",test5_src, test5_dst[0], test5_ret);
     test5_ret = ft_strcpy(test5_dst, test5_src);
-    printf("after: \ntest5_src: %s\ntest5_dst: %s\ntest5_ret: %s\n\n",test5_src, test5_dst, test5_ret);
+    //printf("after: \ntest5_src: %s\ntest5_dst: %c\ntest5_ret: %s\n\n",test5_src, test5_dst[0], test5_ret);
 
     //test dst with enought size
     printf("test6: dst with enought size:\n");

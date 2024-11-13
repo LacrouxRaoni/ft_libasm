@@ -12,7 +12,7 @@ extern __errno_location             ; Import the errno location function
 global ft_strdup
 
 ft_strdup:
-    test rsi, rsi                   ; Check if rsi is null
+    test rdi, rdi                   ; Check if rdi is null
     jz _null_pointer                ; Send the null poarameter to error section
 
     mov r14, rdi                     ; Save the rdi pointer to a temporary register

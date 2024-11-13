@@ -123,7 +123,7 @@ void test_ft_strcpy()
     char* copy;
     char* dest;
     
-    dest = malloc(ft_strlen("Hello World") * sizeof(char));
+    dest = malloc(ft_strlen("Hello World") * sizeof(char) + 1);
     copy = ft_strcpy(dest, "Hello World");
     printf("copy: %s\n", copy);
     free(dest);
@@ -143,21 +143,25 @@ void test_ft_read()
 {
     char* buffer;
 
-    buffer = malloc(sizeof(char) * 1024);
-    ft_read(1, buffer, ft_strlen("movements"));
+    buffer = calloc(sizeof(char) * 1024, sizeof(char));
+    ft_read(1, buffer, sizeof(char) * 1024);
     printf("read: %s\n", buffer);
+	if (buffer != NULL)
+		free (buffer);
 }
 
 void test_ft_strdup()
 {
     char* dup;
 
-    dup = ft_strdup("Hello World");
+    dup = ft_strdup("Here is dupped");
     printf("dup: %s\n", dup);
+	free(dup);
 }
 
 int main(void)
 {
+	
     printf ("====FT_STRLEN====\n");
     test_ft_strlen();
 
@@ -175,8 +179,7 @@ int main(void)
 
     printf ("====FT_STRDUP====\n");
     test_ft_strdup();
-
-
+	
     return 0;
 
 }

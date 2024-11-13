@@ -7,7 +7,6 @@ global ft_strcpy
 
 ft_strcpy:
     ; Check if the source pointer (rsi) is null
-
     test rsi, rsi
     jz  _null_pointer  ; If null, jump to _null_pointer
     ; Check if the destination pointer (rdi) is null

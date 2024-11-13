@@ -14,7 +14,7 @@ ft_write:
     mov rax, 1                        ; Syscall number for sys_write (1)
     syscall                           ; Make the syscall
     cmp rax, 0                        ; Check if syscall failed
-    jl write_failed                   ; Jump to write_failed if failed
+    jl bad_file_descriptor           ; Jump to bad_file_descriptior if failed
     
 end:        
    mov rax, rdx                       ; Send buffer size to rax
@@ -25,18 +25,12 @@ handle_null:
     jne invalid_size                  ; If not zero, jump to invalid_size section
     jmp end                           ; Jump to end to return 0
 
-invalid_fd:
-    call __errno_location wrt ..plt   ; Get the address of errno
-    mov dword [rax], 9                ; Set errno to EBADF (Bad file descriptor, value 9)
-    jmp error                         ; Jump to error handling
-
 invalid_size:
     call __errno_location wrt ..plt   ; Get the address of errno
     mov dword [rax], 14               ; Set errno to EFAU (Invalid argument, value 22)
     jmp error                         ; Jump to error handling
 
-write_failed:
-
+bad_file_descriptor:
     call __errno_location wrt ..plt   ; Get the address of errno
     mov dword [rax], 9                ; Set errno to EBADF (Bad file descriptor, value 9)
     jmp error                         ; Jump to error handling
