@@ -111,7 +111,7 @@ void test_ft_strcmp()
     cmp = ft_strcmp("Teste9", "Teste0");
     printf("cmp: %d\n", cmp);
 
-    cmp = ft_strcmp("", "0");
+    cmp = strcmp("", "0");
     printf("cmp: %d\n", cmp);
 
     cmp = ft_strcmp("0", "");
@@ -133,9 +133,9 @@ void test_ft_write()
 {
     ft_write(0, "Writing Hello World\n", ft_strlen("Writing Hello World\n"));
     ft_write(0, "Writing Hello Woooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooorld\n", ft_strlen("Writing Hello Woooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooorld\n"));
-    ft_write(0, "", ft_strlen(""));
+    ft_write(1, "a", 1);
 
-    int fd = open("Test.txt", O_WRONLY | O_CREAT);
+    int fd = open("Test.txt", O_RDWR | O_CREAT);
     ft_write(fd, "Writing Hello World\n", ft_strlen("Writing Hello World\n"));
 }
 
