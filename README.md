@@ -40,9 +40,9 @@ About the lib:
 
 Libasm implements the following C functions in assembly language:
 
-ft_strlen: This function calculates the length (number of characters) of a null-terminated string. It's the assembly equivalent of the standard C library function strlen.
-ft_strcpy: This function copies a string from a source location to a destination location in memory. It's the assembly counterpart of the C library function strcpy.
-ft_strcmp: This function compares two strings lexicographically (character by character). It fulfills a similar role to the C library function strcmp.
-ft_write: This function writes data to a file descriptor. It's the assembly counterpart of the standard C system call write.
-ft_read: This function reads data from a file descriptor. It's the assembly equivalent of the standard C system call read.
-ft_strdup: This function allocates memory and copies a string, returning a pointer to the newly allocated memory containing the duplicated string. It's similar in functionality to the C library function strdup.
+-   ft_strlen: This function calculates the length (number of characters) of a null-terminated string. It's the assembly equivalent of the standard C library function strlen.<br>
+-   ft_strcpy: This function copies a string from a source location to a destination location in memory. It's the assembly counterpart of the C library function strcpy.<br>
+-   ft_strcmp: This function compares two strings lexicographically (character by character). It fulfills a similar role to the C library function strcmp.<br>
+-   ft_write: This function writes data to a file descriptor. It's the assembly counterpart of the standard C system call write.<br>
+-   ft_read: This function reads data from a file descriptor. It's the assembly equivalent of the standard C system call read.<br>
+-   ft_strdup: This function allocates memory and copies a string, returning a pointer to the newly allocated memory containing the duplicated string. It's similar in functionality to the C library function strdup.
